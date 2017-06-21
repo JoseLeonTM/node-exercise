@@ -3,17 +3,17 @@ const react_1 = require("react");
 class Converter extends react_1.Component {
     render() {
         let curs = this.props.currencies.map((cur) => {
-            return react_1.default.createElement("option", { value: cur }, cur);
+            return React.createElement("option", { value: cur }, cur);
         });
-        return (react_1.default.createElement("div", { id: "converter" },
-            react_1.default.createElement("h3", null, "Converter"),
-            react_1.default.createElement("select", null, curs),
-            react_1.default.createElement("div", { className: "amount" },
-                react_1.default.createElement("input", { type: "number", min: "0.01", required: true })),
-            react_1.default.createElement("h4", null, " To "),
-            react_1.default.createElement("select", null, curs),
-            react_1.default.createElement("div", { className: "amount" },
-                react_1.default.createElement("p", { id: "convResult" }))));
+        return (React.createElement("div", { id: "converter" },
+            React.createElement("h3", null, "Converter"),
+            React.createElement("select", null, curs),
+            React.createElement("div", { className: "amount" },
+                React.createElement("input", { type: "number", min: "0.01", required: true })),
+            React.createElement("h4", null, " To "),
+            React.createElement("select", null, curs),
+            React.createElement("div", { className: "amount" },
+                React.createElement("p", { id: "convResult" }))));
     }
 }
 Converter.propTypes = {

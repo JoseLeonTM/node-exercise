@@ -7,7 +7,7 @@ class Converter extends Component{
             (cur) =>{
                 return <option value={cur}>{cur}</option>
             }
-        );        
+        );       
         return(
             <div id="converter">
                 <h3>Converter</h3>

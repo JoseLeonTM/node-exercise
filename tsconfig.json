@@ -12,5 +12,11 @@
     ],
     "exclude":[
       "bin"
+    ],
+    "types": [
+      "react",
+      "react-dom",
+      "jasmine",
+      "es6-shim"
     ]
 }

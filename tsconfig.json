@@ -11,7 +11,8 @@
         "279/**/*.ts"
     ],
     "exclude":[
-      "bin"
+      "bin",
+      "tests"
     ],
     "types": [
       "react",

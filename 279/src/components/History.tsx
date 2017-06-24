@@ -3,23 +3,21 @@ import * as React from 'react';
 import store from '../store';
 
 interface routeProps{
-    currencies : string[]
+    // currencies : string[]
 }
-interface ConverterProps {
+interface HistoryProps {
     route : routeProps,
     currencies: string[],
-    onConvert: Function
+    onSpend: Function
 };
-interface ConverterState {
+interface HistoryState {
     store : Object
 };
-// interface convertType{
-//     handleConvert : Function
-// }
-class Converter extends React.Component<ConverterProps, ConverterState>{
-    handleConvert(){
-        console.log("converting");
-        // this.props.onConvert(this.refs.amount.value);
+
+class History extends React.Component<HistoryProps, HistoryState>{
+    handleHistory(){
+        console.log("historying");
+        this.props.onHistory();
         // this.refs.amount.value='';
     }
     render(){
@@ -28,9 +26,20 @@ class Converter extends React.Component<ConverterProps, ConverterState>{
                 return (<option value={cur}>{cur}</option>);
             }
         );
+        let transactions = this.props.route.transactions.map(
+            (transaction)=>{
+                return(
+                    <tr>
+                        <td>transaction[0]</td>
+                        <td>transaction[1]</td>
+                        <td>transaction[2]</td>
+                    </tr>
+                );
+            }
+        )
         return(
-            <div id="converter">
-                <h3>Converter</h3>
+            <div id="history">
+                <h3>History</h3>
                 <select id="currencies">
                     {curs}
                 </select>
@@ -38,10 +47,10 @@ class Converter extends React.Component<ConverterProps, ConverterState>{
                     <input type="number" min="0.01" required />
                 </div>                
                 <h4> To </h4>
-                <select id="currencies">
+                <select>
                     {curs}
                 </select>
-                <button onClick={this.handleConvert}>Convert</button>
+                <button onClick={this.handleHistory}>Convert</button>
                 <div className="amount">
                     <p id="convResult"></p>
                 </div>                
@@ -49,4 +58,4 @@ class Converter extends React.Component<ConverterProps, ConverterState>{
         )
     }
 }
-export default Converter;
+export default History;

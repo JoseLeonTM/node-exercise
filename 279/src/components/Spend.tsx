@@ -1,25 +1,27 @@
 
+
 import * as React from 'react';
 import store from '../store';
 
 interface routeProps{
-    currencies : string[]
+    // currencies : string[]
 }
-interface ConverterProps {
+interface SpendProps {
     route : routeProps,
     currencies: string[],
-    onConvert: Function
+    onSpend: Function
 };
-interface ConverterState {
+interface SpendState {
     store : Object
 };
-// interface convertType{
-//     handleConvert : Function
+// interface spendType{
+//     handleSpend : Function
 // }
-class Converter extends React.Component<ConverterProps, ConverterState>{
-    handleConvert(){
-        console.log("converting");
-        // this.props.onConvert(this.refs.amount.value);
+
+class Spend extends React.Component<SpendProps, SpendState>{
+    handleSpend(){
+        console.log("spending");
+        this.props.onSpend();
         // this.refs.amount.value='';
     }
     render(){
@@ -29,7 +31,7 @@ class Converter extends React.Component<ConverterProps, ConverterState>{
             }
         );
         return(
-            <div id="converter">
+            <div id="spend">
                 <h3>Converter</h3>
                 <select id="currencies">
                     {curs}
@@ -41,7 +43,7 @@ class Converter extends React.Component<ConverterProps, ConverterState>{
                 <select id="currencies">
                     {curs}
                 </select>
-                <button onClick={this.handleConvert}>Convert</button>
+                <button onClick={this.handleSpend}>Convert</button>
                 <div className="amount">
                     <p id="convResult"></p>
                 </div>                
@@ -49,4 +51,4 @@ class Converter extends React.Component<ConverterProps, ConverterState>{
         )
     }
 }
-export default Converter;
+export default Spend;

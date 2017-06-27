@@ -1,22 +1,21 @@
 "use strict";
-function update() {
-    var currencies;
-    fetch('https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5')
-        .then((response) => response.json())
-        .then((response) => {
-        currencies = response;
-    });
-    return currencies;
-}
+const actions_1 = require("./actions");
+// function update(){
+//     return fetch('https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5')
+//     .then((response)=> response.json())
+//     .then((response)=>{
+//         return response;
+//     })
+// }
 const initialState = {
-    curs: update(),
+    curs: actions_1.update(),
     hist: {}
 };
 function reducer(state = initialState, action) {
     console.log("Action: ", action);
     switch (action.type) {
         case 'update': {
-            return Object.assign({}, state.hist, update());
+            return Object.assign({}, state, action.currencies);
         }
         case 'convert': {
             var from = action.from, amount = action.amount, to = action.to;

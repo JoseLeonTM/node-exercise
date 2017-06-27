@@ -3,12 +3,13 @@ import * as React from 'react';
 import store from '../store';
 
 interface routeProps{
-    // currencies : string[]
+    currencies : string[]
+    transactions : Array<number | string>
 }
 interface HistoryProps {
     route : routeProps,
     currencies: string[],
-    onSpend: Function
+    onHistory: Function
 };
 interface HistoryState {
     store : Object

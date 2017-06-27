@@ -17,11 +17,11 @@ class Converter extends React.Component {
         });
         return (React.createElement("div", { id: "converter" },
             React.createElement("h3", null, "Converter"),
-            React.createElement("select", null, curs),
+            React.createElement("select", { id: "currencies" }, curs),
             React.createElement("div", { className: "amount" },
                 React.createElement("input", { type: "number", min: "0.01", required: true })),
             React.createElement("h4", null, " To "),
-            React.createElement("select", null, curs),
+            React.createElement("select", { id: "currencies" }, curs),
             React.createElement("button", { onClick: this.handleConvert }, "Convert"),
             React.createElement("div", { className: "amount" },
                 React.createElement("p", { id: "convResult" }))));

@@ -4,11 +4,11 @@ import * as React from 'react';
 import store from '../store';
 
 interface routeProps{
-    // currencies : string[]
+    currencies : string[]
 }
 interface SpendProps {
     route : routeProps,
-    currencies: string[],
+    // currencies: string[],
     onSpend: Function
 };
 interface SpendState {

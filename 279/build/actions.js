@@ -1,8 +1,26 @@
 "use strict";
-// import constants from './constant';
-function update() {
+function requestUpdate(url) {
     return {
-        type: 'update'
+        type: 'requestUpdate',
+        url
+    };
+}
+function receiveUpdate(url, res) {
+    return {
+        type: 'update',
+        url,
+        currencies: res,
+        date: Date.now()
+    };
+}
+function update(url = 'https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5') {
+    return function (dispatch) {
+        dispatch(requestUpdate(url));
+        return fetch(url)
+            .then((response) => response.json())
+            .then((response) => {
+            dispatch(receiveUpdate(url, response));
+        });
     };
 }
 exports.update = update;

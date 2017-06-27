@@ -4,10 +4,8 @@ const react_router_dom_1 = require("react-router-dom");
 const store_1 = require("../store");
 ;
 ;
-// interface HomeType{
-//     unsubscribe : Function
-// }
 class Home extends React.Component {
+    unsubscribe() { }
     componentDidMount() {
         this.unsubscribe = store_1.default.subscribe(() => {
             this.setState({ state: store_1.default.getState() });
@@ -21,9 +19,11 @@ class Home extends React.Component {
             React.createElement("nav", null,
                 React.createElement("ul", null,
                     React.createElement("li", null,
-                        React.createElement(react_router_dom_1.Link, { to: "./converter", activeClassName: "active" }, "Converter")),
+                        React.createElement(react_router_dom_1.Link, { to: "./converter" }, "Converter")),
                     React.createElement("li", null,
-                        React.createElement(react_router_dom_1.Link, { to: "./spend", activeClassName: "active" }, "Spend"))))));
+                        React.createElement(react_router_dom_1.Link, { to: "./spend" }, "Spend")),
+                    React.createElement("li", null,
+                        React.createElement(react_router_dom_1.Link, { to: "./history" }, "History"))))));
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

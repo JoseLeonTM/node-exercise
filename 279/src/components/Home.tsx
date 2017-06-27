@@ -5,11 +5,12 @@ import store from '../store';
 
 interface HomeProps {};
 interface HomeState {};
-// interface HomeType{
-//     unsubscribe : Function
-// }
+interface HomeType{
+    unsubscribe : Function
+}
 
-class Home extends React.Component<HomeProps,HomeState>{
+class Home extends React.Component<HomeProps,HomeState> implements HomeType{
+    unsubscribe(){}
     componentDidMount(){
         this.unsubscribe = store.subscribe(()=>{
             this.setState({state: store.getState()});
@@ -23,8 +24,9 @@ class Home extends React.Component<HomeProps,HomeState>{
             <div id="home">
                 <nav>
                     <ul>
-                        <li><Link to="./converter" activeClassName="active">Converter</Link></li>
-                        <li><Link to="./spend" activeClassName="active">Spend</Link></li>
+                        <li><Link to="./converter">Converter</Link></li>
+                        <li><Link to="./spend">Spend</Link></li>
+                        <li><Link to="./history">History</Link></li>
                     </ul>
                 </nav>
             </div>

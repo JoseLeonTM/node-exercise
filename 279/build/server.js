@@ -1,13 +1,20 @@
 "use strict";
 // import * as util from 'util';
 const express = require("express");
-const path = require("path");
 var app = express();
-// app.set('port', process.env.PORT || 3000);
-app.get('/', function (req, res) {
-    console.log(path.join(__dirname, 'index.html'));
-    res.redirect(path.join(__dirname, 'index.html'));
-    // res.send('pinche fidel joto');
+// var router = express.router();
+app.set('port', 3000);
+// app.get('/',function(req,res){  
+// console.log("PATH: "+path.join(__dirname,'index.html'));
+// res.render('index.html',function(err,html){
+//     res.send(html);
+// });
+// });
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile());
+app.set('views', __dirname);
+app.get('/', function (req, res, next) {
+    res.render('index');
 });
 app.listen('3000', function () {
     console.log("Listenning: ", app.get('port'));

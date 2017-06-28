@@ -24,12 +24,10 @@
     "@types/react": "^15.0.29",
     "@types/react-addons-test-utils": "^0.14.18",
     "@types/react-dom": "^15.5.0",
+    "@types/react-redux": "^4.4.45",
     "babel": "^6.23.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
-    "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-typescript": "^3.1.6",
     "jasmine": "^2.6.0",
     "react-addons-test-utils": "^15.6.0",
     "react-router-dom": "^4.1.1",
@@ -40,6 +38,7 @@
     "flux": "^3.1.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
     "redux": "^3.7.0"
   }
 }

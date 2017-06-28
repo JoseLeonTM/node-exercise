@@ -1,5 +1,3 @@
-
-
 import * as React from 'react';
 import store from '../store';
 
@@ -19,10 +17,16 @@ interface SpendState {
 // }
 
 class Spend extends React.Component<SpendProps, SpendState>{
+    // componentDidMount(){
+    //     this.unsubscribe = store.subscribe(()=>{
+    //         this.setState({state: store.getState()});
+    //     })
+    // }
+    // componentWillUnmount(){
+    //     this.unsubscribe();
+    // }
     handleSpend(){
         console.log("spending");
-        this.props.onSpend();
-        // this.refs.amount.value='';
     }
     render(){
         let curs = this.props.route.currencies.map(

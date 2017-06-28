@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import {connect} from 'react-redux';
 import store from '../store';
 
 interface routeProps{
@@ -13,17 +14,24 @@ interface ConverterProps {
 interface ConverterState {
     store : Object
 };
-// interface convertType{
-//     handleConvert : Function
-// }
 class Converter extends React.Component<ConverterProps, ConverterState>{
+    // unsubscribe(){}
+    // componentDidMount(){
+    //     this.unsubscribe = store.subscribe(()=>{
+    //         this.setState({state: store.getState()});
+    //     })
+    // }
+    // componentWillUnmount(){
+    //     this.unsubscribe();
+    // }
     handleConvert(){
         console.log("converting");
-        // this.props.onConvert(this.refs.amount.value);
-        // this.refs.amount.value='';
     }
     render(){
-        let curs = this.props.route.currencies.map(
+        const {store} = this.context;
+        const state = store.getState();
+
+        let curs = state.curs.map(
             (cur) =>{
                 return (<option value={cur}>{cur}</option>);
             }
@@ -49,4 +57,9 @@ class Converter extends React.Component<ConverterProps, ConverterState>{
         )
     }
 }
-export default Converter;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+    options
+)(Component);

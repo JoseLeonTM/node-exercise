@@ -6,6 +6,7 @@ function requestUpdate(url) {
     };
 }
 function receiveUpdate(url, res) {
+    console.log(res);
     return {
         type: 'update',
         url,

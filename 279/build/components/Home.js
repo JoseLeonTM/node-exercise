@@ -1,19 +1,9 @@
 "use strict";
 const React = require("react");
 const react_router_dom_1 = require("react-router-dom");
-const store_1 = require("../store");
 ;
 ;
 class Home extends React.Component {
-    unsubscribe() { }
-    componentDidMount() {
-        this.unsubscribe = store_1.default.subscribe(() => {
-            this.setState({ state: store_1.default.getState() });
-        });
-    }
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
     render() {
         return (React.createElement("div", { id: "home" },
             React.createElement("nav", null,

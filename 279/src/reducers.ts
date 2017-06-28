@@ -2,16 +2,10 @@
 
 import {convert,spend,update} from './actions';
 
-// function update(){
-//     return fetch('https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5')
-//     .then((response)=> response.json())
-//     .then((response)=>{
-//         return response;
-//     })
-// }
 const initialState={
     curs: update(),
-    hist:{}
+    hist:[],
+    sel:String
 }
 
 function reducer(state=initialState,action){  
@@ -31,7 +25,9 @@ function reducer(state=initialState,action){
                 currency = action.currency,
                 date = action.date;
             var payment = [date,amount,currency];
-            return Object.assign({},payment);
+            var newState = Object.assign({},state);
+            newState.hist.push(payment);
+            return newState;
         }            
         default: return state;
     }    

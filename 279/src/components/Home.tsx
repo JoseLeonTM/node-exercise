@@ -1,24 +1,12 @@
 
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import store from '../store';
 
 interface HomeProps {};
 interface HomeState {};
-interface HomeType{
-    unsubscribe : Function
-}
 
-class Home extends React.Component<HomeProps,HomeState> implements HomeType{
-    unsubscribe(){}
-    componentDidMount(){
-        this.unsubscribe = store.subscribe(()=>{
-            this.setState({state: store.getState()});
-        })
-    }
-    componentWillUnmount(){
-        this.unsubscribe();
-    }
+class Home extends React.Component<HomeProps,HomeState>{
+    
     render(){
         return(
             <div id="home">
@@ -29,7 +17,7 @@ class Home extends React.Component<HomeProps,HomeState> implements HomeType{
                         <li><Link to="./history">History</Link></li>
                     </ul>
                 </nav>
-            </div>
+            </div>            
         )
     }
 }

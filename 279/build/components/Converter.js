@@ -2,17 +2,23 @@
 const React = require("react");
 ;
 ;
-// interface convertType{
-//     handleConvert : Function
-// }
 class Converter extends React.Component {
+    // unsubscribe(){}
+    // componentDidMount(){
+    //     this.unsubscribe = store.subscribe(()=>{
+    //         this.setState({state: store.getState()});
+    //     })
+    // }
+    // componentWillUnmount(){
+    //     this.unsubscribe();
+    // }
     handleConvert() {
         console.log("converting");
-        // this.props.onConvert(this.refs.amount.value);
-        // this.refs.amount.value='';
     }
     render() {
-        let curs = this.props.route.currencies.map((cur) => {
+        const { store } = this.context;
+        const state = store.getState();
+        let curs = state.curs.map((cur) => {
             return (React.createElement("option", { value: cur }, cur));
         });
         return (React.createElement("div", { id: "converter" },

@@ -3,10 +3,16 @@ const React = require("react");
 ;
 ;
 class History extends React.Component {
+    // componentDidMount(){
+    //     this.unsubscribe = store.subscribe(()=>{
+    //         this.setState({state: store.getState()});
+    //     })
+    // }
+    // componentWillUnmount(){
+    //     this.unsubscribe();
+    // }
     handleHistory() {
         console.log("historying");
-        this.props.onHistory();
-        // this.refs.amount.value='';
     }
     render() {
         let curs = this.props.route.currencies.map((cur) => {

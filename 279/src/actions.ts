@@ -8,6 +8,7 @@ function requestUpdate(url){
     }
 }
 function receiveUpdate(url,res){
+    console.log(res);
     return{
         type : 'update',
         url,
@@ -36,6 +37,7 @@ export function convert(from,amount,to){
             amount: amount
         };
     };
+    
 export function spend(currency,amount,date){
         return {
             type: 'spend',

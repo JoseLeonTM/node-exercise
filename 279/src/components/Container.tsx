@@ -35,7 +35,7 @@ class Container extends React.Component<ContainerProps,ContainerState>{
 export default connect(
     null,
     function(dispatch){
-        console.log(Actions);
+        console.log("actions: ",Actions);
         return {
             init : Actions.Update
         }

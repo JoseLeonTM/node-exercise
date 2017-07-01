@@ -16,14 +16,6 @@ interface HistoryState {
 };
 
 class History extends React.Component<HistoryProps, HistoryState>{
-    // componentDidMount(){
-    //     this.unsubscribe = store.subscribe(()=>{
-    //         this.setState({state: store.getState()});
-    //     })
-    // }
-    // componentWillUnmount(){
-    //     this.unsubscribe();
-    // }
     handleHistory(){
         console.log("historying");
     }

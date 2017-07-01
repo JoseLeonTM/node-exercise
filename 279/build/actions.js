@@ -1,14 +1,14 @@
 "use strict";
 function requestUpdate(url) {
     return {
-        type: 'requestUpdate',
+        type: 'requestUpdateCurrencies',
         url
     };
 }
 function receiveUpdate(url, res) {
-    console.log(res);
+    console.log("receiveUpdate: ", res);
     return {
-        type: 'update',
+        type: 'updateCurrencies',
         url,
         currencies: res,
         date: Date.now()

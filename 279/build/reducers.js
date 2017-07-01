@@ -2,7 +2,8 @@
 const actions_1 = require("./actions");
 const initialState = {
     curs: actions_1.update(),
-    hist: []
+    hist: [],
+    sel: String
 };
 function reducer(state = initialState, action) {
     console.log("Action: ", action);

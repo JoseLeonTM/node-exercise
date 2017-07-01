@@ -1,9 +1,10 @@
 "use strict";
 const React = require("react");
 const react_router_dom_1 = require("react-router-dom");
+const react_redux_1 = require("react-redux");
 ;
 ;
-class Home extends React.Component {
+class HomeComponent extends React.Component {
     render() {
         return (React.createElement("div", { id: "home" },
             React.createElement("nav", null,
@@ -17,4 +18,4 @@ class Home extends React.Component {
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Home;
+exports.default = react_redux_1.connect()(HomeComponent);

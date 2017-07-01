@@ -1,7 +1,6 @@
 
 import {createStore} from 'redux';
 import reducer from './reducers';
-import {spend, convert} from './actions';
 
 var store = createStore(reducer);
 

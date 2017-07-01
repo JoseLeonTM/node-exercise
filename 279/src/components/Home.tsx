@@ -1,12 +1,16 @@
 
 import * as React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-interface HomeProps {};
+interface HomeProps {
+    actions : any
+    value : any,
+    dispatch : any
+};
 interface HomeState {};
 
-class Home extends React.Component<HomeProps,HomeState>{
-    
+class HomeComponent extends React.Component<HomeProps,HomeState>{
     render(){
         return(
             <div id="home">
@@ -21,4 +25,6 @@ class Home extends React.Component<HomeProps,HomeState>{
         )
     }
 }
-export default Home;
+
+export default connect(    
+)(HomeComponent);

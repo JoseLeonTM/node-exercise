@@ -12,24 +12,28 @@ interface ConverterProps {
         date: Date
     };
 };
-
 class Converter extends React.Component<ConverterProps, any>{
     constructor() {
         super();
         this.handleConvert = this.handleConvert.bind(this);
-        console.log("Props: ", this.props);
+    }
+    componentWillMount(){
+        // console.log("Props: ",this.props);
     }
     handleConvert() {
         const { convert } = this.props;
-        let from = (document.getElementsByClassName('currencies')[0] as HTMLSelectElement).value,
-            to = (document.getElementsByClassName('currencies')[1] as HTMLSelectElement).value,
-            amount = (document.getElementsByClassName('amount')[0] as HTMLInputElement).value;
-        convert(from, amount, to);
+        console.log(convert);
+        // let from = (document.getElementsByClassName('currencies')[0] as HTMLSelectElement).value,
+        //     to = (document.getElementsByClassName('currencies')[1] as HTMLSelectElement).value,
+        //     amount = (document.getElementsByClassName('amount')[0] as HTMLInputElement).value;
+        // convert(from, amount, to);
     }
     render() {
         //////MAPPING CURRENCIES INTO <option> ELEMENTS
         const { curs } = this.props;
-        let rateCodes: string[] = Object.getOwnPropertyNames(curs.rates);
+        // console.log("Currencies: ",curs);
+        let rateCodes: string[] = Object.getOwnPropertyNames(curs.currencyData.rates);
+        // console.log("RATES: ",rateCodes);
         let currencies = rateCodes.map((code) => {
             return (<option value={code}>{code}</option>);
         });
@@ -38,18 +42,18 @@ class Converter extends React.Component<ConverterProps, any>{
                 <h3>Converter</h3>
                 <div className="currency">
                     <label>Currency</label>
-                    <select className="currencies">
+                    <select className="currencies" defaultValue="USD">
                         {currencies}
                     </select>
                 </div>
                 <div className="amount">
                     <label>Amount</label>
-                    <input type="number" min="0.01" required />
+                    <input type="number" required />
                 </div>
                 <h4> To </h4>
                 <div>
                     <label>Currency</label>
-                    <select className="currencies">
+                    <select className="currencies" defaultValue="USD">
                         {currencies}
                     </select>
                 </div>
@@ -66,7 +70,7 @@ const mapStateToProps = (state) => {
         curs: state.curs
     }
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         convert: (from: string, amount: number, to: string) => {
             dispatch(Actions.Convert(from, amount, to));

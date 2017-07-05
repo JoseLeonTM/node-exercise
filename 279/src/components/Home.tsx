@@ -17,7 +17,7 @@ class HomeComponent extends React.Component<HomeProps,HomeState>{
                 <nav>
                     <ul>
                         <li><Link to="./converter">Converter</Link></li>
-                        <li><Link to="./spend">Spend</Link></li>
+                        <li><Link to="./transaction">Transaction</Link></li>
                         <li><Link to="./history">History</Link></li>
                     </ul>
                 </nav>

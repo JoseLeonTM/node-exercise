@@ -1,20 +1,18 @@
 
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { applyMiddleware } from 'redux';
 import Reducers from '../reducers';
 
-function requestUpdate(url) {
+function requestUpdate() {
+    // console.log("Update requested");
     return {
-        type: 'requestUpdateCurrencies',
-        url
+        type: 'requestUpdate',
     }
 }
-
 function receiveUpdate(res) {
-    console.log("receiveUpdate: ", res);
+    // console.log("Update received");
     return {
-        type: 'update',
-        currencies: res,
+        type: 'receiveUpdate',
+        currencyData: res,
         date: Date.now()
     }
 }
@@ -25,23 +23,17 @@ function error(err) {
         error: err
     }
 }
-function getContent() {
-    return fetch('https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5');
-}
-const store = createStore(
-    Reducers,
-    applyMiddleware(thunk)
-);
-function thunkUpdate() {
-    return function (dispatch) {
-        //fssd
-        return getContent().then(
-            res => dispatch(receiveUpdate(res)),
-            err => dispatch(error(err))
-        )
+export default function update() {
+    // console.log("Update");
+    return dispatch => {
+        dispatch(requestUpdate());
+        return fetch('https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5')
+            .then(
+            res => res.json(),
+            err => console.log("Error: ",err)
+            )
+            .then(
+                json => dispatch(receiveUpdate(json))
+            )
     }
-}
-
-export default function Update(){
-    store.dispatch(thunkUpdate);
 }

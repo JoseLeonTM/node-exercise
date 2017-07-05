@@ -38,13 +38,3 @@ function Update() {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Update;
-// export default function Update(url){
-//     return function(dispatch){
-//         dispatch(requestUpdate(url));
-//         return fetch(url)
-//         .then((response)=> response.json())
-//         .then((response)=>{
-//             dispatch(receiveUpdate(url,response));
-//         });
-//     }
-// } 

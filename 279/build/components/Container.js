@@ -23,7 +23,7 @@ class Container extends React.Component {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = react_redux_1.connect(null, function (dispatch) {
-    console.log(actions_1.default);
+    console.log("actions: ", actions_1.default);
     return {
         init: actions_1.default.Update
     };

@@ -1,12 +1,13 @@
 
-function history(state = [], action) {
-    console.log("Adding a transaction...");
+function history(state = [], action) {    
     switch (action.type) {
-        case 'history': {
+        case 'addTransaction': {
+            console.log("Adding a transaction");
             var amount = action.amount,
+                concept = action.concept,
                 currency = action.currency,
                 date = action.date;
-            var payment = [date, amount, currency];
+            var payment = [date,concept,amount, currency];
             return [...state, payment];
         }
         default:

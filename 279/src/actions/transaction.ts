@@ -1,8 +1,9 @@
-export default function Transaction(currency,amount,date){
-        return {
-            type: 'transaction',
-            amount: amount,
-            currency : currency,
-            date : date
-        };
-    }
+export default function Transaction(date,concept, amount, currency) {
+    return {
+        type: 'addTransaction',
+        amount: amount,
+        concept : concept,
+        currency: currency,
+        date: date
+    };
+}

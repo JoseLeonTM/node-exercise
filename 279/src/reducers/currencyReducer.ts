@@ -1,16 +1,24 @@
 
 
-function currencies(state={rates:{},date:Date.now()},action) {
-    console.log("Updating currencies...");
+function currencies(state={currencyData:{},date:Date.now(), isRequesting:false},action) {
     switch(action.type){
-        case 'update':{
+        case 'receiveUpdate':{
+            console.log("New currencies received");
             return {
-                rates : action.currencies,
-                date : action.date
+                currencyData : action.currencyData,
+                date : action.date,
+                isRequesting : false
             };
         }
-        default:
+        case 'requestUpdate':{
+            // console.log("Still fetching");
+            return Object.assign({},state,{
+                isRequesting : true
+            })
+        }
+        default:{
             return state;
+        }
     }
 }
 export default currencies;

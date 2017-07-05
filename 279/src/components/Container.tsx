@@ -15,18 +15,18 @@ interface ContainerProps{
 interface ContainerState{}
 
 class Container extends React.Component<ContainerProps,ContainerState>{
-    constructor(){
-        super();
+    componentWillMount(){   
+        // console.log("init");
         this.props.init();
-    }
+    }         
     render() {
         return (
             <Router>
                 <div>
-                    <Route path="/" component={Home}/>
-                    <Route path="/converter" component={Converter}/>
-                    <Route path="/spend" component={Transaction}/>
-                    <Route path="/history" component={History}/>
+                    <Route path="/" component={Home as any}/>
+                    <Route path="/converter" component={Converter as any}/>
+                    <Route path="/transaction" component={Transaction as any}/>
+                    <Route path="/history" component={History as any}/>
                 </div>
             </Router>
         )
@@ -35,9 +35,10 @@ class Container extends React.Component<ContainerProps,ContainerState>{
 export default connect(
     null,
     function(dispatch){
-        console.log("actions: ",Actions);
         return {
-            init : Actions.Update
+            init : (dispatch)=>{
+                Actions.Update();
+            }
         }
     }
 )(Container as any);

@@ -1,7 +1,6 @@
 
 import * as React from 'react';
 import Converter from '../components/Converter';
-import store from '../store';
 import * as jasmine from 'jasmine';
 import * as testUtils from 'react-addons-test-utils';
 

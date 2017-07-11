@@ -1,42 +1,54 @@
 
 import * as React from 'react';
-import store from '../store';
 import { connect } from 'react-redux';
 import Actions from '../actions';
 
 
 interface HistoryProps {
     curs: {
-        rates: {
-            [key: string]: number
+        currencyData: {
+            rates: {
+                [key: string]: number
+            }
         },
         date: Date
     };
-    hist: Array<[Date, number, string]>;
-    onHistory: Function
+    histState: {
+        cur: string;
+    }
+    hist: Array<[Date, string, number]>;
+    changeCur: Function
 };
 interface HistoryState {
-    store: Object
+    cur: string
 };
 
 class History extends React.Component<HistoryProps, HistoryState>{
-    handleHistory() {
-        console.log("historying");
+    constructor(){
+        super();
+        this.getValue = this.getValue.bind(this);        
+    }
+    getValue(ev) {
+        let value = ev.target.value,
+            { changeCur } = this.props;
+        changeCur(value);
     }
     render() {
         //////MAPPING CURRENCIES INTO <option> ELEMENTS
-        const { curs, hist } = this.props;
+        const { curs, hist, histState } = this.props;
         let rateCodes: string[] = Object.getOwnPropertyNames(curs.currencyData.rates);
         let currencies = rateCodes.map((code) => {
-            return (<option value={code}>{code}</option>);
+            return (<option key={code}>{code}</option>);
         });
         let transactions = hist.map(
-            (transaction) => {
+            (transaction, ind) => {
+                var currency = curs.currencyData.rates[histState.cur],
+                 displayValue = (transaction[2] * currency).toFixed(2)
                 return (
-                    <tr>
-                        <td>{transaction[0]}</td>
-                        <td>{transaction[1]}</td>
-                        <td>{transaction[2]} {transaction[3]}</td>
+                    <tr key={ind}>
+                        <td className="tDate">{transaction[0]}</td>
+                        <td className="tConcept">{transaction[1]}</td>
+                        <td className="tAmount">{displayValue} {histState.cur}</td>
                     </tr>
                 );
             }
@@ -46,21 +58,20 @@ class History extends React.Component<HistoryProps, HistoryState>{
                 <h3>History</h3>
                 <div>
                     <p>Display amounts in:</p>
-                    <select className="currencies" defaultValue="USD">
+                    <select className="currencies" value={histState.cur} onChange={this.getValue}>
                         {currencies}
-                    </select>
-                    <button onClick={this.handleHistory}>Change</button>
+                    </select>                    
                 </div>
                 <table>
                     <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Concept</th>
-                        <th>Amount</th>
-                    </tr>
+                        <tr>
+                            <th className="tDate">Date</th>
+                            <th className="tConcept">Concept</th>
+                            <th className="tAmount">Amount</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {transactions}
+                        {transactions}
                     </tbody>
                 </table>
             </div>
@@ -70,14 +81,15 @@ class History extends React.Component<HistoryProps, HistoryState>{
 const mapStateToProps = (state) => {
     return {
         curs: state.curs,
-        hist: state.hist
+        hist: state.hist,
+        histState: state.histState
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        // convert: (from: string, amount: number, to: string) => {
-        //     dispatch(Actions.Convert(from, amount, to));
-        // }
+        changeCur: (cur: string) => {
+            dispatch(Actions.histChange(cur));
+        }
     }
 }
 export default connect(

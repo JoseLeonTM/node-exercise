@@ -1,11 +1,27 @@
 "use strict";
-function Transaction(currency, amount, date) {
+function Transaction(date, concept, amount, cur) {
     return {
-        type: 'transaction',
-        amount: amount,
-        currency: currency,
-        date: date
+        type: 'addTransaction',
+        amount,
+        concept,
+        date,
+        cur
     };
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Transaction;
+function changeTransValues(property, value) {
+    return {
+        type: 'changeTransValues',
+        property,
+        value
+    };
+}
+exports.changeTransValues = changeTransValues;
+function clearTransValues() {
+    return {
+        type: 'clearTransValues'
+    };
+}
+exports.clearTransValues = clearTransValues;
+//# sourceMappingURL=transaction.js.map

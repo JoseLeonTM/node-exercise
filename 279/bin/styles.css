@@ -1,0 +1,94 @@
+body {
+  width: 80%;
+  margin: 10px auto;
+  font-family: Arial; }
+
+#home {
+  background-color: #503cbe; }
+  #home nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+    #home nav ul li {
+      display: inline-block;
+      padding: 10px;
+      margin: 10px 0 10px 10px;
+      border-radius: 5px;
+      border-right: 1px solid white; }
+      #home nav ul li a {
+        text-decoration: none;
+        color: white;
+        padding: 10px; }
+      #home nav ul li:hover {
+        background-color: #5a46c8; }
+      #home nav ul li.active {
+        background-color: #5a46c8; }
+
+#converter, #transaction, #history {
+  border: 1px solid #c8c8c8;
+  padding: 0 20px; }
+  #converter div, #transaction div, #history div {
+    font-size: 20px; }
+    #converter div label, #transaction div label, #history div label {
+      display: block;
+      margin: 5px; }
+    #converter div input, #converter div select, #transaction div input, #transaction div select, #history div input, #history div select {
+      width: 100%;
+      height: 30px;
+      font-size: 20px;
+      border-radius: 5px;
+      border: 1px solid #c8c8c8;
+      background-color: #f0f0f0; }
+  #converter button, #transaction button, #history button {
+    margin: 20px auto;
+    display: block;
+    width: 70%;
+    border: none;
+    color: white;
+    background-color: #503cbe;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 5px; }
+    #converter button:hover, #transaction button:hover, #history button:hover {
+      background-color: #5a46c8;
+      cursor: pointer; }
+
+#converter p {
+  width: 100%;
+  height: 40px;
+  font-size: 34px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e6e6e6; }
+
+#history table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 5px; }
+  #history table thead tr {
+    display: flex;
+    background-color: #503cbe;
+    color: white; }
+    #history table thead tr th {
+      padding: 5px;
+      font-size: 20px; }
+      #history table thead tr th:not(:last-child) {
+        border-right: 2px solid white; }
+  #history table tbody tr {
+    display: flex; }
+    #history table tbody tr:nth-child(2) {
+      background-color: #e6e6e6; }
+    #history table tbody tr td {
+      border: 1px solid black;
+      padding: 5px; }
+      #history table tbody tr td:nth-child(1) {
+        text-align: center; }
+      #history table tbody tr td:nth-child(3) {
+        text-align: right; }
+  #history table .tDate {
+    width: 20%; }
+  #history table .tConcept {
+    width: 60%; }
+  #history table .tAmount {
+    width: 20%; }

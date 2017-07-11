@@ -1,16 +1,24 @@
 "use strict";
-function currencies(state = { rates: {}, date: Date.now() }, action) {
-    console.log("Updating currencies...");
+function currencies(state = { currencyData: {}, date: Date.now(), isRequesting: false }, action) {
     switch (action.type) {
-        case 'update': {
+        case 'receiveUpdate': {
+            // console.log("New currencies received");
             return {
-                rates: action.currencies,
-                date: action.date
+                currencyData: action.currencyData,
+                date: action.date,
+                isRequesting: false
             };
         }
-        default:
+        case 'requestUpdate': {
+            return Object.assign({}, state, {
+                isRequesting: true
+            });
+        }
+        default: {
             return state;
+        }
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = currencies;
+//# sourceMappingURL=currencyReducer.js.map

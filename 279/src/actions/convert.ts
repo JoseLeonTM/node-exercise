@@ -1,8 +1,20 @@
-export default function Convert(from: string, amount: number, to: string) {
+export default function Convert(from: number, amount: number, to: number) {
     return {
-        type: 'convert',
-        from: from,
-        to: to,
-        amount: amount
-    };
+        type: 'result',
+        from,
+        amount,
+        to
+    }
 };
+export function changeConvValues(property, value) {
+    return {
+        type: 'changeConvValues',
+        property,
+        value
+    }
+}
+export function clearConvValues() {
+    return {
+        type: 'clearConvValues'
+    }
+}

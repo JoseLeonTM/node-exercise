@@ -5,9 +5,19 @@ import Actions from '../actions';
 
 interface ConverterProps {
     convert: Function;
+    updateValues: Function;
+    clearValues: Function;
+    convState: {
+        from: string;
+        amount: string;
+        to: string;
+        result: number;
+    }
     curs: {
-        rates: {
-            [key: string]: number
+        currencyData: {
+            rates: {
+                [key: string]: number
+            }
         },
         date: Date
     };
@@ -16,50 +26,53 @@ class Converter extends React.Component<ConverterProps, any>{
     constructor() {
         super();
         this.handleConvert = this.handleConvert.bind(this);
-    }
-    componentWillMount(){
-        // console.log("Props: ",this.props);
+        this.getValue = this.getValue.bind(this);
     }
     handleConvert() {
-        const { convert } = this.props;
-        console.log(convert);
-        // let from = (document.getElementsByClassName('currencies')[0] as HTMLSelectElement).value,
-        //     to = (document.getElementsByClassName('currencies')[1] as HTMLSelectElement).value,
-        //     amount = (document.getElementsByClassName('amount')[0] as HTMLInputElement).value;
-        // convert(from, amount, to);
+        const { convert, curs, convState } = this.props;
+        ///GET THE VALUES FROM THE STORED CURRENCIES
+        var from = curs.currencyData.rates[convState.from],
+            to = curs.currencyData.rates[convState.to];
+        //////CALCULATE THE CONVERSION
+        convert(from, convState.amount, to);
     }
-    render() {
+    getValue(ev) {
+        let property = ev.target.className,
+            value = ev.target.value,
+            { updateValues } = this.props;
+        updateValues(property, value);
+    }
+    render() {        
         //////MAPPING CURRENCIES INTO <option> ELEMENTS
-        const { curs } = this.props;
-        // console.log("Currencies: ",curs);
+        const { curs, convState } = this.props;        
         let rateCodes: string[] = Object.getOwnPropertyNames(curs.currencyData.rates);
-        // console.log("RATES: ",rateCodes);
         let currencies = rateCodes.map((code) => {
-            return (<option value={code}>{code}</option>);
+            return (<option key={code}>{code}</option>);
         });
         return (
             <div id="converter">
                 <h3>Converter</h3>
-                <div className="currency">
+                <h4> From </h4>
+                <div>
                     <label>Currency</label>
-                    <select className="currencies" defaultValue="USD">
+                    <select className="from" onChange={this.getValue} value={convState.from}>
                         {currencies}
                     </select>
                 </div>
-                <div className="amount">
+                <div>
                     <label>Amount</label>
-                    <input type="number" required />
+                    <input type="number" className="amount" required onChange={this.getValue} value={convState.amount} />
                 </div>
                 <h4> To </h4>
                 <div>
                     <label>Currency</label>
-                    <select className="currencies" defaultValue="USD">
+                    <select className="to" onChange={this.getValue} value={convState.to}>
                         {currencies}
                     </select>
                 </div>
                 <button onClick={this.handleConvert}>Convert</button>
-                <div className="amount">
-                    <p id="convResult"></p>
+                <div>
+                    <p>{(convState.result ? convState.result.toFixed(2) : '-')}</p>
                 </div>
             </div>
         )
@@ -67,13 +80,20 @@ class Converter extends React.Component<ConverterProps, any>{
 }
 const mapStateToProps = (state) => {
     return {
-        curs: state.curs
+        curs: state.curs,
+        convState: state.convState
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        convert: (from: string, amount: number, to: string) => {
+        convert: (from: number, amount: number, to: number) => {
             dispatch(Actions.Convert(from, amount, to));
+        },
+        updateValues: (property: string, value) => {
+            dispatch(Actions.changeConvValues(property, value));
+        },
+        clearValues: () => {
+            dispatch(Actions.clearConvValues());
         }
     }
 }

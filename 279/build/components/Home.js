@@ -12,10 +12,11 @@ class HomeComponent extends React.Component {
                     React.createElement("li", null,
                         React.createElement(react_router_dom_1.Link, { to: "./converter" }, "Converter")),
                     React.createElement("li", null,
-                        React.createElement(react_router_dom_1.Link, { to: "./spend" }, "Spend")),
+                        React.createElement(react_router_dom_1.Link, { to: "./transaction" }, "Transaction")),
                     React.createElement("li", null,
                         React.createElement(react_router_dom_1.Link, { to: "./history" }, "History"))))));
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = react_redux_1.connect()(HomeComponent);
+//# sourceMappingURL=Home.js.map

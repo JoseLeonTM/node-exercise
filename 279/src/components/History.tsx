@@ -43,11 +43,11 @@ class History extends React.Component<HistoryProps, HistoryState>{
         let transactions = hist.map(
             (transaction, ind) => {
                 var currency = curs.currencyData.rates[histState.cur],
-                 displayValue = (transaction[2] * currency).toFixed(2)
+                 displayValue = (transaction[3] * currency).toFixed(2);
                 return (
                     <tr key={ind}>
-                        <td className="tDate">{transaction[0]}</td>
-                        <td className="tConcept">{transaction[1]}</td>
+                        <td className="tDate">{transaction[1]}</td>
+                        <td className="tConcept">{transaction[2]}</td>
                         <td className="tAmount">{displayValue} {histState.cur}</td>
                     </tr>
                 );

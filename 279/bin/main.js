@@ -25778,8 +25778,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function history(state = [], action) {
     switch (action.type) {
         case 'addTransaction': {
-            var amount = ((action.amount) / action.cur), concept = action.concept, date = action.date;
-            var payment = [date, concept, amount];
+            var amount = ((action.amount) / action.cur), concept = action.concept, displayDate = action.date, date = new Date(Date.now());
+            let [year, month, day] = displayDate.split('-');
+            date.setFullYear(year);
+            date.setMonth(month);
+            date.setDate(day);
+            var payment = [date, displayDate, concept, amount];
             return [...state, payment];
         }
         default:
@@ -28377,7 +28381,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         transaction: (date, concept, amount, currency) => {
-            dispatch(actions_1.default.Update());
+            dispatch(actions_1.default.Update())
+                .then(function () { dispatch(actions_1.default.Transaction(date, concept, amount, currency)); });
             dispatch(actions_1.default.Transaction(date, concept, amount, currency));
         },
         updateValues: (property, value) => {
@@ -28420,10 +28425,10 @@ class History extends React.Component {
             return (React.createElement("option", { key: code }, code));
         });
         let transactions = hist.map((transaction, ind) => {
-            var currency = curs.currencyData.rates[histState.cur], displayValue = (transaction[2] * currency).toFixed(2);
+            var currency = curs.currencyData.rates[histState.cur], displayValue = (transaction[3] * currency).toFixed(2);
             return (React.createElement("tr", { key: ind },
-                React.createElement("td", { className: "tDate" }, transaction[0]),
-                React.createElement("td", { className: "tConcept" }, transaction[1]),
+                React.createElement("td", { className: "tDate" }, transaction[1]),
+                React.createElement("td", { className: "tConcept" }, transaction[2]),
                 React.createElement("td", { className: "tAmount" },
                     displayValue,
                     " ",

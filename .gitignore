@@ -1,5 +1,4 @@
 .idea
 node_modules
-gulpfile.js
-279/build
 279/bin
+279/build

@@ -91,8 +91,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         transaction: (date: Date, concept: string, amount: number, currency: string) => {
-            dispatch(Actions.Update());
-            dispatch(Actions.Transaction(date, concept, amount, currency));
+            dispatch(Actions.Update())
+            .then(
+                function(){dispatch(Actions.Transaction(date, concept, amount, currency));}
+            )
+            dispatch(Actions.Transaction(date, concept, amount, currency));         
         },
         updateValues: (property: string, value) => {
             dispatch(Actions.changeTransValues(property, value));

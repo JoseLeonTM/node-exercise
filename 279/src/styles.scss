@@ -5,6 +5,9 @@ body{
     font-family: Arial;
 }
 $borRad :5px;
+h1{
+    margin:10px 0;
+}
 #home{
     background-color: rgb(80,60,190);
     nav{
@@ -21,7 +24,7 @@ $borRad :5px;
                 a{
                     text-decoration: none;
                     color:white;
-                    padding:10px;                                       
+                    padding:10px;                                   
                 }
                 &:hover{
                    background-color: rgb(90,70,200);
@@ -69,12 +72,18 @@ $borRad :5px;
 }
 #converter{
     p{
-        width: 100%;
+        width: 90%;
         height:40px;
         font-size: 34px;
+        margin:10px auto;
         padding:10px;
         border-radius: $borRad;
         background-color: rgb(230,230,230)
+    }
+    h4{
+        margin:0;
+        margin-top:10px;
+        border-bottom: 1px solid rgb(230,230,230);
     }
 }
 #history{

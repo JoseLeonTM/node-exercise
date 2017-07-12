@@ -87,6 +87,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         convert: (from: number, amount: number, to: number) => {
+            dispatch(Actions.Update());
             dispatch(Actions.Convert(from, amount, to));
         },
         updateValues: (property: string, value) => {

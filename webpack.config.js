@@ -38,5 +38,6 @@ module.exports = {
             // }
         ]
     },    
+    externals: '/server',
     watch: true
 }

@@ -1,9 +1,8 @@
 
-import { applyMiddleware } from 'redux';
-import Reducers from '../reducers';
+// import { applyMiddleware } from 'redux';
+// import Reducers from '../reducers';
 
 function requestUpdate() {
-    // console.log("Update requested");
     return {
         type: 'requestUpdate',
     }
@@ -32,6 +31,6 @@ export default function update() {
             )
             .then(
             json => dispatch(receiveUpdate(json))
-            )
+            ) 
     }
 }

@@ -27,7 +27,6 @@ interface TransactionState {
         usd: number;
     }
 };
-
 class Transaction extends React.Component<TransactionProps, TransactionState>{
     constructor() {
         super();
@@ -92,6 +91,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         transaction: (date: Date, concept: string, amount: number, currency: string) => {
+            dispatch(Actions.Update());
             dispatch(Actions.Transaction(date, concept, amount, currency));
         },
         updateValues: (property: string, value) => {

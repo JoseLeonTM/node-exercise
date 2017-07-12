@@ -28092,9 +28092,10 @@ NavLink.defaultProps = {
 
 "use strict";
 
+// import { applyMiddleware } from 'redux';
+// import Reducers from '../reducers';
 Object.defineProperty(exports, "__esModule", { value: true });
 function requestUpdate() {
-    // console.log("Update requested");
     return {
         type: 'requestUpdate',
     };
@@ -28297,6 +28298,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         convert: (from, amount, to) => {
+            dispatch(actions_1.default.Update());
             dispatch(actions_1.default.Convert(from, amount, to));
         },
         updateValues: (property, value) => {
@@ -28375,6 +28377,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         transaction: (date, concept, amount, currency) => {
+            dispatch(actions_1.default.Update());
             dispatch(actions_1.default.Transaction(date, concept, amount, currency));
         },
         updateValues: (property, value) => {

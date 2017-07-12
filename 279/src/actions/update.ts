@@ -1,7 +1,4 @@
 
-// import { applyMiddleware } from 'redux';
-// import Reducers from '../reducers';
-
 function requestUpdate() {
     return {
         type: 'requestUpdate',

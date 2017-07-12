@@ -8,23 +8,40 @@ interface HomeProps {
     value : any,
     dispatch : any
 };
-interface HomeState {};
+interface HomeState {
+    curs: {
+        currencyData: {
+            rates: {
+                [key: string]: number
+            },
+        }
+        date: Date
+        isRequesting : boolean
+    };
+};
 
 class HomeComponent extends React.Component<HomeProps,HomeState>{
     render(){
+        var {isRequesting} =this.props.curs;
         return(
             <div id="home">
                 <nav>
                     <ul>
-                        <li><Link to="./converter">Converter</Link></li>
-                        <li><Link to="./transaction">Transaction</Link></li>
-                        <li><Link to="./history">History</Link></li>
+                        <li><label hidden={!isRequesting}>Converter</label><Link hidden={isRequesting} to="./converter">Converter</Link></li>
+                        <li><label hidden={!isRequesting}>Transaction</label><Link hidden={isRequesting} to="./transaction">Transaction</Link></li>
+                        <li><label hidden={!isRequesting}>History</label><Link hidden={isRequesting} to="./history">History</Link></li>
                     </ul>
                 </nav>
             </div>            
         )
     }
 }
-
-export default connect(    
-)(HomeComponent);
+const mapStateToProps = (state) => {
+    return {
+        curs: state.curs
+    }
+}
+export default connect( 
+    mapStateToProps,
+    null  
+)(HomeComponent as any);

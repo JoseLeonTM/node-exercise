@@ -39,7 +39,7 @@ var state : State ={
 }
 ///////FETCHES THE CURRENCIES///////
 function update(res,prev){
-    console.log("Fetching new currencies");
+    // console.log("New currencies");
     request(
         'https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5',
         function(error,response,body){
@@ -61,9 +61,9 @@ app.get('/update', function (req, res) {
         let oldTime = state.curs.timestamp.getTime();
         let nowtime = now.getTime();
         let substract = nowtime - oldTime;
-        console.log("Differente: ",(substract/60000).toFixed(1),"min");;
+        console.log("Last update: ",(substract/60000).toFixed(1),"min");
         if(Math.abs(substract)<60000){
-            console.log("Using old currencies");
+            // console.log("Old currencies");
             res.send(state.curs);
         }
         else{

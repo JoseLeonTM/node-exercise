@@ -95,7 +95,6 @@ const mapDispatchToProps = dispatch => {
             .then(
                 function(){dispatch(Actions.Transaction(date, concept, amount, currency));}
             )
-            dispatch(Actions.Transaction(date, concept, amount, currency));         
         },
         updateValues: (property: string, value) => {
             dispatch(Actions.changeTransValues(property, value));

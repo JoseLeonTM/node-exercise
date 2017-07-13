@@ -7,8 +7,6 @@ interface HomeProps {
     actions : any
     value : any,
     dispatch : any
-};
-interface HomeState {
     curs: {
         currencyData: {
             rates: {
@@ -19,6 +17,7 @@ interface HomeState {
         isRequesting : boolean
     };
 };
+interface HomeState {};
 
 class HomeComponent extends React.Component<HomeProps,HomeState>{
     render(){

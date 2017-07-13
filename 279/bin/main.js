@@ -12305,7 +12305,6 @@ const redux_1 = __webpack_require__(58);
 const react_redux_1 = __webpack_require__(24);
 const redux_thunk_1 = __webpack_require__(237);
 __webpack_require__(238);
-// import 'file-loader?name=[name].js!./server.ts';
 const reducers_1 = __webpack_require__(239);
 const Container_1 = __webpack_require__(245);
 const actions_1 = __webpack_require__(31);
@@ -28231,7 +28230,7 @@ class HomeComponent extends React.Component {
             React.createElement("nav", null,
                 React.createElement("ul", null,
                     React.createElement("li", null,
-                        React.createElement("label", { className: "", hidden: !isRequesting }, "Converter"),
+                        React.createElement("label", { hidden: !isRequesting }, "Converter"),
                         React.createElement(react_router_dom_1.Link, { hidden: isRequesting, to: "./converter" }, "Converter")),
                     React.createElement("li", null,
                         React.createElement("label", { hidden: !isRequesting }, "Transaction"),

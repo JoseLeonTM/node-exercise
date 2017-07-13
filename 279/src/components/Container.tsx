@@ -16,7 +16,7 @@ interface ContainerState{}
 
 class Container extends React.Component<ContainerProps,ContainerState>{
     componentWillMount(){   
-        this.props.init();        
+        this.props.init();       
     }         
     render() {
         return (

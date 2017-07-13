@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import 'file-loader?name=[name].css!./styles.scss';
-// import 'file-loader?name=[name].js!./server.ts';
 
 import Reducers from './reducers';
 import Container from './components/Container';

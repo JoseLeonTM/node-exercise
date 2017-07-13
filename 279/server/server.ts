@@ -38,17 +38,13 @@ var state : State ={
     hist : []
 }
 ///////FETCHES THE CURRENCIES///////
-function update(res,prev){
-    // console.log("New currencies");
+function update(res){
     request(
         'https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5',
         function(error,response,body){
             if(!error && response.statusCode == 200){
                 state.curs = JSON.parse(body); 
-                state.curs.timestamp = new Date(Date.now());
-                if(prev){
-                    state.curs.prevDate = prev;
-                }
+                state.curs.timestamp = new Date(Date.now());             
                 res.send(state.curs);
             }
         }
@@ -62,16 +58,15 @@ app.get('/update', function (req, res) {
         let nowtime = now.getTime();
         let substract = nowtime - oldTime;
         console.log("Last update: ",(substract/60000).toFixed(1),"min");
-        if(Math.abs(substract)<60000){
-            // console.log("Old currencies");
+        if(Math.abs(substract)<600000){
             res.send(state.curs);
         }
         else{
-            update(res,state.curs.timestamp);
+            update(res);
         }
     }
     else{
-        update(res,null);
+        update(res);
     }
 });
 app.listen('3000', function () {

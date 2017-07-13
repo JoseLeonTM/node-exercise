@@ -32,12 +32,7 @@ module.exports = {
                 test: /\.scss$/,
                 loader: 'file-loader'
             }
-            // {
-            //     test: /server\.ts$/,
-            //     loader: 'file-loader'
-            // }
         ]
     },    
-    externals: '/server',
     watch: true
 }

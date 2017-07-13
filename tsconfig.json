@@ -12,6 +12,10 @@
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
     "outDir": "./279/build",                        /* Redirect output structure to the directory. */
     "rootDir": "./279/src",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    "exclude" : [
+      "279/server",
+      "node_modules"
+    ]
     // "removeComments": true,                /* Do not emit comments to output. */
     // "noEmit": true,                        /* Do not emit outputs. */
     // "importHelpers": true,                 /* Import emit helpers from 'tslib'. */

@@ -3793,12 +3793,13 @@ var createPath = exports.createPath = function createPath(location) {
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const update_1 = __webpack_require__(271);
-const convert_1 = __webpack_require__(272);
-const transaction_1 = __webpack_require__(273);
-const history_1 = __webpack_require__(274);
-const Actions = {
+var update_1 = __webpack_require__(271);
+var convert_1 = __webpack_require__(272);
+var transaction_1 = __webpack_require__(273);
+var history_1 = __webpack_require__(274);
+var Actions = {
     Update: update_1.default,
     Convert: convert_1.default,
     changeConvValues: convert_1.changeConvValues,
@@ -3809,7 +3810,6 @@ const Actions = {
     histChange: history_1.default
 };
 exports.default = Actions;
-
 
 /***/ }),
 /* 32 */
@@ -12298,21 +12298,20 @@ Link.contextTypes = {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(6);
-const react_dom_1 = __webpack_require__(126);
-const redux_1 = __webpack_require__(58);
-const react_redux_1 = __webpack_require__(24);
-const redux_thunk_1 = __webpack_require__(237);
-__webpack_require__(238);
-const reducers_1 = __webpack_require__(239);
-const Container_1 = __webpack_require__(245);
-const actions_1 = __webpack_require__(31);
-let store = redux_1.createStore(reducers_1.default, redux_1.applyMiddleware(redux_thunk_1.default));
-store.dispatch(actions_1.default.Update());
-react_dom_1.render(React.createElement(react_redux_1.Provider, { store: store },
-    React.createElement(Container_1.default, null)), document.getElementById('root'));
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(6);
+var react_dom_1 = __webpack_require__(126);
+var redux_1 = __webpack_require__(58);
+var react_redux_1 = __webpack_require__(24);
+var redux_thunk_1 = __webpack_require__(237);
+__webpack_require__(238);
+var reducers_1 = __webpack_require__(239);
+var Container_1 = __webpack_require__(245);
+var actions_1 = __webpack_require__(31);
+var store = redux_1.createStore(reducers_1.default, redux_1.applyMiddleware(redux_thunk_1.default));
+store.dispatch(actions_1.default.Update());
+react_dom_1.render(React.createElement(react_redux_1.Provider, { store: store }, React.createElement(Container_1.default, null)), document.getElementById('root'));
 
 /***/ }),
 /* 112 */
@@ -25684,14 +25683,15 @@ module.exports = __webpack_require__.p + "styles.css";
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const redux_1 = __webpack_require__(58);
-const currencyReducer_1 = __webpack_require__(240);
-const convState_1 = __webpack_require__(241);
-const transReducer_1 = __webpack_require__(242);
-const transState_1 = __webpack_require__(243);
-const histState_1 = __webpack_require__(244);
-const Reducers = redux_1.combineReducers({
+var redux_1 = __webpack_require__(58);
+var currencyReducer_1 = __webpack_require__(240);
+var convState_1 = __webpack_require__(241);
+var transReducer_1 = __webpack_require__(242);
+var transState_1 = __webpack_require__(243);
+var histState_1 = __webpack_require__(244);
+var Reducers = redux_1.combineReducers({
     curs: currencyReducer_1.default,
     hist: transReducer_1.default,
     convState: convState_1.default,
@@ -25700,35 +25700,40 @@ const Reducers = redux_1.combineReducers({
 });
 exports.default = Reducers;
 
-
 /***/ }),
 /* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
-function currencies(state = { currencyData: {}, date: Date.now(), isRequesting: false }, action) {
+function currencies() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { currencyData: {}, date: Date.now(), isRequesting: false };
+    var action = arguments[1];
+
     switch (action.type) {
-        case 'receiveUpdate': {
-            return {
-                currencyData: action.currencyData,
-                date: action.date,
-                isRequesting: false
-            };
-        }
-        case 'requestUpdate': {
-            return Object.assign({}, state, {
-                isRequesting: true
-            });
-        }
-        default: {
-            return state;
-        }
+        case 'receiveUpdate':
+            {
+                return {
+                    currencyData: action.currencyData,
+                    date: action.date,
+                    isRequesting: false
+                };
+            }
+        case 'requestUpdate':
+            {
+                return Object.assign({}, state, {
+                    isRequesting: true
+                });
+            }
+        default:
+            {
+                return state;
+            }
     }
 }
 exports.default = currencies;
-
 
 /***/ }),
 /* 241 */
@@ -25736,35 +25741,41 @@ exports.default = currencies;
 
 "use strict";
 
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const initialState = {
+var initialState = {
     from: 'USD',
     amount: 1,
     to: 'MXN',
     result: null
 };
-function convState(state = initialState, action) {
+function convState() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+    var action = arguments[1];
+
     switch (action.type) {
-        case 'changeConvValues': {
-            return Object.assign({}, state, {
-                [action.property]: action.value
-            });
-        }
-        case 'clearConvValues': {
-            return initialState;
-        }
-        case 'result': {
-            var result = ((action.amount * action.to) / action.from);
-            return Object.assign({}, state, {
-                result: result
-            });
-        }
+        case 'changeConvValues':
+            {
+                return Object.assign({}, state, _defineProperty({}, action.property, action.value));
+            }
+        case 'clearConvValues':
+            {
+                return initialState;
+            }
+        case 'result':
+            {
+                var result = action.amount * action.to / action.from;
+                return Object.assign({}, state, {
+                    result: result
+                });
+            }
         default:
             return state;
     }
 }
 exports.default = convState;
-
 
 /***/ }),
 /* 242 */
@@ -25772,27 +25783,35 @@ exports.default = convState;
 
 "use strict";
 
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 Object.defineProperty(exports, "__esModule", { value: true });
-function history(state = [], action) {
+function history() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
     switch (action.type) {
-        case 'addTransaction': {
-            var amount = ((action.amount) / action.cur), concept = action.concept, 
-            // displayDate = action.date,
-            date = action.date;
-            // date = new Date(Date.now());
-            // let [year,month,day] = displayDate.split('-');
-            // date.setFullYear(year);
-            // date.setMonth(month);
-            // date.setDate(day);                
-            var payment = [date, concept, amount];
-            return [...state, payment];
-        }
+        case 'addTransaction':
+            {
+                var amount = action.amount / action.cur,
+                    concept = action.concept,
+
+                // displayDate = action.date,
+                date = action.date;
+                // date = new Date(Date.now());
+                // let [year,month,day] = displayDate.split('-');
+                // date.setFullYear(year);
+                // date.setMonth(month);
+                // date.setDate(day);                
+                var payment = [date, concept, amount];
+                return [].concat(_toConsumableArray(state), [payment]);
+            }
         default:
             return state;
     }
 }
 exports.default = history;
-
 
 /***/ }),
 /* 243 */
@@ -25800,40 +25819,41 @@ exports.default = history;
 
 "use strict";
 
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
 function getDate() {
     var now = new Date();
-    var date = now.getDate() < 10 ?
-        '0' + now.getDate() :
-        now.getDate();
-    var month = now.getMonth() < 10 ?
-        '0' + (now.getMonth() + 1) :
-        (now.getMonth() + 1);
+    var date = now.getDate() < 10 ? '0' + now.getDate() : now.getDate();
+    var month = now.getMonth() < 10 ? '0' + (now.getMonth() + 1) : now.getMonth() + 1;
     var year = now.getFullYear();
     return year + '-' + month + '-' + date;
 }
-const initialState = {
+var initialState = {
     currency: "USD",
     amount: 0,
     concept: '',
     date: getDate()
 };
-function transState(state = initialState, action) {
+function transState() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+    var action = arguments[1];
+
     switch (action.type) {
-        case 'changeTransValues': {
-            return Object.assign({}, state, {
-                [action.property]: action.value
-            });
-        }
-        case 'clearTransValues': {
-            return initialState;
-        }
+        case 'changeTransValues':
+            {
+                return Object.assign({}, state, _defineProperty({}, action.property, action.value));
+            }
+        case 'clearTransValues':
+            {
+                return initialState;
+            }
         default:
             return state;
     }
 }
 exports.default = transState;
-
 
 /***/ }),
 /* 244 */
@@ -25841,20 +25861,24 @@ exports.default = transState;
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
-function histState(state = { cur: 'USD' }, action) {
+function histState() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { cur: 'USD' };
+    var action = arguments[1];
+
     switch (action.type) {
-        case 'changeCurrency': {
-            return Object.assign({}, {
-                cur: action.cur
-            });
-        }
+        case 'changeCurrency':
+            {
+                return Object.assign({}, {
+                    cur: action.cur
+                });
+            }
         default:
             return state;
     }
 }
 exports.default = histState;
-
 
 /***/ }),
 /* 245 */
@@ -25862,36 +25886,56 @@ exports.default = histState;
 
 "use strict";
 
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(6);
-const react_router_dom_1 = __webpack_require__(107);
-const react_redux_1 = __webpack_require__(24);
-const actions_1 = __webpack_require__(31);
-const Home_1 = __webpack_require__(275);
-const Converter_1 = __webpack_require__(276);
-const Transaction_1 = __webpack_require__(277);
-const History_1 = __webpack_require__(278);
-class Container extends React.Component {
-    componentWillMount() {
-        this.props.init();
+var React = __webpack_require__(6);
+var react_router_dom_1 = __webpack_require__(107);
+var react_redux_1 = __webpack_require__(24);
+var actions_1 = __webpack_require__(31);
+var Home_1 = __webpack_require__(275);
+var Converter_1 = __webpack_require__(276);
+var Transaction_1 = __webpack_require__(277);
+var History_1 = __webpack_require__(278);
+
+var Container = function (_React$Component) {
+    _inherits(Container, _React$Component);
+
+    function Container() {
+        _classCallCheck(this, Container);
+
+        return _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).apply(this, arguments));
     }
-    render() {
-        return (React.createElement(react_router_dom_1.BrowserRouter, null,
-            React.createElement("div", null,
-                React.createElement(react_router_dom_1.Route, { path: "/", component: Home_1.default }),
-                React.createElement(react_router_dom_1.Route, { path: "/converter", component: Converter_1.default }),
-                React.createElement(react_router_dom_1.Route, { path: "/transaction", component: Transaction_1.default }),
-                React.createElement(react_router_dom_1.Route, { path: "/history", component: History_1.default }))));
-    }
-}
+
+    _createClass(Container, [{
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            this.props.init();
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return React.createElement(react_router_dom_1.BrowserRouter, null, React.createElement("div", null, React.createElement(react_router_dom_1.Route, { path: "/", component: Home_1.default }), React.createElement(react_router_dom_1.Route, { path: "/converter", component: Converter_1.default }), React.createElement(react_router_dom_1.Route, { path: "/transaction", component: Transaction_1.default }), React.createElement(react_router_dom_1.Route, { path: "/history", component: History_1.default })));
+        }
+    }]);
+
+    return Container;
+}(React.Component);
+
 exports.default = react_redux_1.connect(null, function (dispatch) {
     return {
-        init: (dispatch) => {
+        init: function init(dispatch) {
             actions_1.default.Update();
         }
     };
 })(Container);
-
 
 /***/ }),
 /* 246 */
@@ -28097,10 +28141,11 @@ NavLink.defaultProps = {
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
 function requestUpdate() {
     return {
-        type: 'requestUpdate',
+        type: 'requestUpdate'
     };
 }
 function receiveUpdate(res) {
@@ -28118,15 +28163,18 @@ function error(err) {
     };
 }
 function update() {
-    return dispatch => {
+    return function (dispatch) {
         dispatch(requestUpdate());
-        return fetch('http://localhost:3000/update')
-            .then(res => res.json(), err => console.log("Error: ", err))
-            .then(json => dispatch(receiveUpdate(json)));
+        return fetch('http://localhost:3000/update').then(function (res) {
+            return res.json();
+        }, function (err) {
+            return console.log("Error: ", err);
+        }).then(function (json) {
+            return dispatch(receiveUpdate(json));
+        });
     };
 }
 exports.default = update;
-
 
 /***/ }),
 /* 272 */
@@ -28134,13 +28182,14 @@ exports.default = update;
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
 function Convert(from, amount, to) {
     return {
         type: 'result',
-        from,
-        amount,
-        to
+        from: from,
+        amount: amount,
+        to: to
     };
 }
 exports.default = Convert;
@@ -28148,8 +28197,8 @@ exports.default = Convert;
 function changeConvValues(property, value) {
     return {
         type: 'changeConvValues',
-        property,
-        value
+        property: property,
+        value: value
     };
 }
 exports.changeConvValues = changeConvValues;
@@ -28160,29 +28209,29 @@ function clearConvValues() {
 }
 exports.clearConvValues = clearConvValues;
 
-
 /***/ }),
 /* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
 function Transaction(date, concept, amount, cur) {
     return {
         type: 'addTransaction',
-        amount,
-        concept,
-        date,
-        cur
+        amount: amount,
+        concept: concept,
+        date: date,
+        cur: cur
     };
 }
 exports.default = Transaction;
 function changeTransValues(property, value) {
     return {
         type: 'changeTransValues',
-        property,
-        value
+        property: property,
+        value: value
     };
 }
 exports.changeTransValues = changeTransValues;
@@ -28193,23 +28242,22 @@ function clearTransValues() {
 }
 exports.clearTransValues = clearTransValues;
 
-
 /***/ }),
 /* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
 Object.defineProperty(exports, "__esModule", { value: true });
 function histChange(cur) {
     return {
         type: 'changeCurrency',
-        cur
+        cur: cur
     };
 }
 exports.default = histChange;
 ;
-
 
 /***/ }),
 /* 275 */
@@ -28217,36 +28265,49 @@ exports.default = histChange;
 
 "use strict";
 
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(6);
-const react_router_dom_1 = __webpack_require__(107);
-const react_redux_1 = __webpack_require__(24);
+var React = __webpack_require__(6);
+var react_router_dom_1 = __webpack_require__(107);
+var react_redux_1 = __webpack_require__(24);
 ;
 ;
-class HomeComponent extends React.Component {
-    render() {
-        var { isRequesting } = this.props.curs;
-        return (React.createElement("div", { id: "home" },
-            React.createElement("nav", null,
-                React.createElement("ul", null,
-                    React.createElement("li", null,
-                        React.createElement("label", { hidden: !isRequesting }, "Converter"),
-                        React.createElement(react_router_dom_1.Link, { hidden: isRequesting, to: "./converter" }, "Converter")),
-                    React.createElement("li", null,
-                        React.createElement("label", { hidden: !isRequesting }, "Transaction"),
-                        React.createElement(react_router_dom_1.Link, { hidden: isRequesting, to: "./transaction" }, "Transaction")),
-                    React.createElement("li", null,
-                        React.createElement("label", { hidden: !isRequesting }, "History"),
-                        React.createElement(react_router_dom_1.Link, { hidden: isRequesting, to: "./history" }, "History"))))));
+
+var HomeComponent = function (_React$Component) {
+    _inherits(HomeComponent, _React$Component);
+
+    function HomeComponent() {
+        _classCallCheck(this, HomeComponent);
+
+        return _possibleConstructorReturn(this, (HomeComponent.__proto__ || Object.getPrototypeOf(HomeComponent)).apply(this, arguments));
     }
-}
-const mapStateToProps = (state) => {
+
+    _createClass(HomeComponent, [{
+        key: "render",
+        value: function render() {
+            var isRequesting = this.props.curs.isRequesting;
+
+            return React.createElement("div", { id: "home" }, React.createElement("nav", null, React.createElement("ul", null, React.createElement("li", null, React.createElement("label", { hidden: !isRequesting }, "Converter"), React.createElement(react_router_dom_1.Link, { hidden: isRequesting, to: "./converter" }, "Converter")), React.createElement("li", null, React.createElement("label", { hidden: !isRequesting }, "Transaction"), React.createElement(react_router_dom_1.Link, { hidden: isRequesting, to: "./transaction" }, "Transaction")), React.createElement("li", null, React.createElement("label", { hidden: !isRequesting }, "History"), React.createElement(react_router_dom_1.Link, { hidden: isRequesting, to: "./history" }, "History")))));
+        }
+    }]);
+
+    return HomeComponent;
+}(React.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
     return {
         curs: state.curs
     };
 };
 exports.default = react_redux_1.connect(mapStateToProps, null)(HomeComponent);
-
 
 /***/ }),
 /* 276 */
@@ -28254,75 +28315,98 @@ exports.default = react_redux_1.connect(mapStateToProps, null)(HomeComponent);
 
 "use strict";
 
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(6);
-const react_redux_1 = __webpack_require__(24);
-const actions_1 = __webpack_require__(31);
+var React = __webpack_require__(6);
+var react_redux_1 = __webpack_require__(24);
+var actions_1 = __webpack_require__(31);
 ;
-class Converter extends React.Component {
-    constructor() {
-        super();
-        this.handleConvert = this.handleConvert.bind(this);
-        this.getValue = this.getValue.bind(this);
+
+var Converter = function (_React$Component) {
+    _inherits(Converter, _React$Component);
+
+    function Converter() {
+        _classCallCheck(this, Converter);
+
+        var _this = _possibleConstructorReturn(this, (Converter.__proto__ || Object.getPrototypeOf(Converter)).call(this));
+
+        _this.handleConvert = _this.handleConvert.bind(_this);
+        _this.getValue = _this.getValue.bind(_this);
+        return _this;
     }
-    handleConvert() {
-        const { convert, curs, convState } = this.props;
-        ///GET THE VALUES FROM THE STORED CURRENCIES
-        var from = curs.currencyData.rates[convState.from], to = curs.currencyData.rates[convState.to];
-        //////CALCULATE THE CONVERSION
-        convert(from, convState.amount, to);
-    }
-    getValue(ev) {
-        let property = ev.target.className, value = ev.target.value, { updateValues } = this.props;
-        updateValues(property, value);
-    }
-    render() {
-        //////MAPPING CURRENCIES INTO <option> ELEMENTS
-        const { curs, convState } = this.props;
-        let rateCodes = Object.getOwnPropertyNames(curs.currencyData.rates);
-        let currencies = rateCodes.map((code) => {
-            return (React.createElement("option", { key: code }, code));
-        });
-        return (React.createElement("div", { id: "converter" },
-            React.createElement("h3", null, "Converter"),
-            React.createElement("h4", null, " From "),
-            React.createElement("div", null,
-                React.createElement("label", null, "Currency"),
-                React.createElement("select", { className: "from", onChange: this.getValue, value: convState.from }, currencies)),
-            React.createElement("div", null,
-                React.createElement("label", null, "Amount"),
-                React.createElement("input", { type: "number", className: "amount", required: true, onChange: this.getValue, value: convState.amount })),
-            React.createElement("h4", null, " To "),
-            React.createElement("div", null,
-                React.createElement("label", null, "Currency"),
-                React.createElement("select", { className: "to", onChange: this.getValue, value: convState.to }, currencies)),
-            React.createElement("button", { onClick: this.handleConvert }, "Convert"),
-            React.createElement("div", null,
-                React.createElement("p", null, (convState.result ? convState.result.toFixed(2) : '-')))));
-    }
-}
-const mapStateToProps = (state) => {
+
+    _createClass(Converter, [{
+        key: "handleConvert",
+        value: function handleConvert() {
+            var _props = this.props,
+                convert = _props.convert,
+                curs = _props.curs,
+                convState = _props.convState;
+            ///GET THE VALUES FROM THE STORED CURRENCIES
+
+            var from = curs.currencyData.rates[convState.from],
+                to = curs.currencyData.rates[convState.to];
+            //////CALCULATE THE CONVERSION
+            convert(from, convState.amount, to);
+        }
+    }, {
+        key: "getValue",
+        value: function getValue(ev) {
+            var property = ev.target.className,
+                value = ev.target.value,
+                updateValues = this.props.updateValues;
+            updateValues(property, value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            //////MAPPING CURRENCIES INTO <option> ELEMENTS
+            var _props2 = this.props,
+                curs = _props2.curs,
+                convState = _props2.convState;
+
+            var rateCodes = Object.getOwnPropertyNames(curs.currencyData.rates);
+            var currencies = rateCodes.map(function (code) {
+                return React.createElement("option", { key: code }, code);
+            });
+            return React.createElement("div", { id: "converter" }, React.createElement("h3", null, "Converter"), React.createElement("h4", null, " From "), React.createElement("div", null, React.createElement("label", null, "Currency"), React.createElement("select", { className: "from", onChange: this.getValue, value: convState.from }, currencies)), React.createElement("div", null, React.createElement("label", null, "Amount"), React.createElement("input", { type: "number", className: "amount", required: true, onChange: this.getValue, value: convState.amount })), React.createElement("h4", null, " To "), React.createElement("div", null, React.createElement("label", null, "Currency"), React.createElement("select", { className: "to", onChange: this.getValue, value: convState.to }, currencies)), React.createElement("button", { onClick: this.handleConvert }, "Convert"), React.createElement("div", null, React.createElement("p", null, convState.result ? convState.result.toFixed(2) : '-')));
+        }
+    }]);
+
+    return Converter;
+}(React.Component);
+
+exports.Converter = Converter;
+var mapStateToProps = function mapStateToProps(state) {
     return {
         curs: state.curs,
         convState: state.convState
     };
 };
-const mapDispatchToProps = (dispatch) => {
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
-        convert: (from, amount, to) => {
-            dispatch(actions_1.default.Update())
-                .then(function () { dispatch(actions_1.default.Convert(from, amount, to)); });
+        convert: function convert(from, amount, to) {
+            dispatch(actions_1.default.Update()).then(function () {
+                dispatch(actions_1.default.Convert(from, amount, to));
+            });
         },
-        updateValues: (property, value) => {
+        updateValues: function updateValues(property, value) {
             dispatch(actions_1.default.changeConvValues(property, value));
         },
-        clearValues: () => {
+        clearValues: function clearValues() {
             dispatch(actions_1.default.clearConvValues());
         }
     };
 };
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Converter);
-
 
 /***/ }),
 /* 277 */
@@ -28330,78 +28414,101 @@ exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Con
 
 "use strict";
 
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(6);
-const react_redux_1 = __webpack_require__(24);
-const actions_1 = __webpack_require__(31);
+var React = __webpack_require__(6);
+var react_redux_1 = __webpack_require__(24);
+var actions_1 = __webpack_require__(31);
 ;
 ;
-class Transaction extends React.Component {
-    constructor() {
-        super();
-        this.handleTransaction = this.handleTransaction.bind(this);
-        this.getValue = this.getValue.bind(this);
+
+var Transaction = function (_React$Component) {
+    _inherits(Transaction, _React$Component);
+
+    function Transaction() {
+        _classCallCheck(this, Transaction);
+
+        var _this = _possibleConstructorReturn(this, (Transaction.__proto__ || Object.getPrototypeOf(Transaction)).call(this));
+
+        _this.handleTransaction = _this.handleTransaction.bind(_this);
+        _this.getValue = _this.getValue.bind(_this);
+        return _this;
     }
-    handleTransaction() {
-        //SENDS AN ACTION WITH THE DATA AND CLEARS THE INPUTS///
-        const { curs, transaction, transState, clearValues } = this.props;
-        var cur = curs.currencyData.rates[transState.currency];
-        if (transState.date && transState.concept && transState.amount && transState.currency) {
-            transaction(transState.date, transState.concept, transState.amount, cur);
-            clearValues();
+
+    _createClass(Transaction, [{
+        key: "handleTransaction",
+        value: function handleTransaction() {
+            //SENDS AN ACTION WITH THE DATA AND CLEARS THE INPUTS///
+            var _props = this.props,
+                curs = _props.curs,
+                transaction = _props.transaction,
+                transState = _props.transState,
+                clearValues = _props.clearValues;
+
+            var cur = curs.currencyData.rates[transState.currency];
+            if (transState.date && transState.concept && transState.amount && transState.currency) {
+                transaction(transState.date, transState.concept, transState.amount, cur);
+                clearValues();
+            }
         }
-    }
-    getValue(ev) {
-        //PASSES VALUES FROM INPUTS TO THE STORE
-        let property = ev.target.className, value = ev.target.value, { updateValues } = this.props;
-        updateValues(property, value);
-    }
-    render() {
-        //MAPPING CURRENCIES INTO <option> ELEMENTS
-        const { curs, transState } = this.props;
-        let rateCodes = Object.getOwnPropertyNames(curs.currencyData.rates);
-        let currencies = rateCodes.map((code) => {
-            return (React.createElement("option", { key: code }, code));
-        });
-        return (React.createElement("div", { id: "transaction" },
-            React.createElement("h3", null, "Transaction"),
-            React.createElement("div", { className: "currency" },
-                React.createElement("label", null, "Currency"),
-                React.createElement("select", { className: "currency", onChange: this.getValue, value: transState.currency }, currencies)),
-            React.createElement("div", { className: "amount" },
-                React.createElement("label", null, "Amount"),
-                React.createElement("input", { type: "number", className: "amount", required: true, onChange: this.getValue, value: transState.amount })),
-            React.createElement("div", { className: "concept" },
-                React.createElement("label", null, "Concept"),
-                React.createElement("input", { type: "text", className: "concept", required: true, onChange: this.getValue, value: transState.concept })),
-            React.createElement("div", { className: "date" },
-                React.createElement("label", null, "Date"),
-                React.createElement("input", { type: "date", className: "date", required: true, onChange: this.getValue, value: transState.date })),
-            React.createElement("button", { onClick: this.handleTransaction }, "Save")));
-    }
-}
-const mapStateToProps = (state) => {
+    }, {
+        key: "getValue",
+        value: function getValue(ev) {
+            //PASSES VALUES FROM INPUTS TO THE STORE
+            var property = ev.target.className,
+                value = ev.target.value,
+                updateValues = this.props.updateValues;
+            updateValues(property, value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            //MAPPING CURRENCIES INTO <option> ELEMENTS
+            var _props2 = this.props,
+                curs = _props2.curs,
+                transState = _props2.transState;
+
+            var rateCodes = Object.getOwnPropertyNames(curs.currencyData.rates);
+            var currencies = rateCodes.map(function (code) {
+                return React.createElement("option", { key: code }, code);
+            });
+            return React.createElement("div", { id: "transaction" }, React.createElement("h3", null, "Transaction"), React.createElement("div", { className: "currency" }, React.createElement("label", null, "Currency"), React.createElement("select", { className: "currency", onChange: this.getValue, value: transState.currency }, currencies)), React.createElement("div", { className: "amount" }, React.createElement("label", null, "Amount"), React.createElement("input", { type: "number", className: "amount", required: true, onChange: this.getValue, value: transState.amount })), React.createElement("div", { className: "concept" }, React.createElement("label", null, "Concept"), React.createElement("input", { type: "text", className: "concept", required: true, onChange: this.getValue, value: transState.concept })), React.createElement("div", { className: "date" }, React.createElement("label", null, "Date"), React.createElement("input", { type: "date", className: "date", required: true, onChange: this.getValue, value: transState.date })), React.createElement("button", { onClick: this.handleTransaction }, "Save"));
+        }
+    }]);
+
+    return Transaction;
+}(React.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
     return {
         curs: state.curs,
         transState: state.transState
     };
 };
-const mapDispatchToProps = dispatch => {
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
-        transaction: (date, concept, amount, currency) => {
-            dispatch(actions_1.default.Update())
-                .then(function () { dispatch(actions_1.default.Transaction(date, concept, amount, currency)); });
+        transaction: function transaction(date, concept, amount, currency) {
+            dispatch(actions_1.default.Update()).then(function () {
+                dispatch(actions_1.default.Transaction(date, concept, amount, currency));
+            });
         },
-        updateValues: (property, value) => {
+        updateValues: function updateValues(property, value) {
             dispatch(actions_1.default.changeTransValues(property, value));
         },
-        clearValues: () => {
+        clearValues: function clearValues() {
             dispatch(actions_1.default.clearTransValues());
         }
     };
 };
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Transaction);
-
 
 /***/ }),
 /* 278 */
@@ -28409,68 +28516,81 @@ exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Tra
 
 "use strict";
 
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(6);
-const react_redux_1 = __webpack_require__(24);
-const actions_1 = __webpack_require__(31);
+var React = __webpack_require__(6);
+var react_redux_1 = __webpack_require__(24);
+var actions_1 = __webpack_require__(31);
 ;
 ;
-class History extends React.Component {
-    constructor() {
-        super();
-        this.getValue = this.getValue.bind(this);
+
+var History = function (_React$Component) {
+    _inherits(History, _React$Component);
+
+    function History() {
+        _classCallCheck(this, History);
+
+        var _this = _possibleConstructorReturn(this, (History.__proto__ || Object.getPrototypeOf(History)).call(this));
+
+        _this.getValue = _this.getValue.bind(_this);
+        return _this;
     }
-    getValue(ev) {
-        let value = ev.target.value, { changeCur } = this.props;
-        changeCur(value);
-    }
-    render() {
-        //////MAPPING CURRENCIES INTO <option> ELEMENTS
-        const { curs, hist, histState } = this.props;
-        let rateCodes = Object.getOwnPropertyNames(curs.currencyData.rates);
-        let currencies = rateCodes.map((code) => {
-            return (React.createElement("option", { key: code }, code));
-        });
-        let transactions = hist.map((transaction, ind) => {
-            var currency = curs.currencyData.rates[histState.cur], displayValue = (transaction[2] * currency).toFixed(2);
-            return (React.createElement("tr", { key: ind },
-                React.createElement("td", { className: "tDate" }, transaction[0]),
-                React.createElement("td", { className: "tConcept" }, transaction[1]),
-                React.createElement("td", { className: "tAmount" },
-                    displayValue,
-                    " ",
-                    histState.cur)));
-        });
-        return (React.createElement("div", { id: "history" },
-            React.createElement("h3", null, "History"),
-            React.createElement("div", null,
-                React.createElement("p", null, "Display amounts in:"),
-                React.createElement("select", { className: "currencies", value: histState.cur, onChange: this.getValue }, currencies)),
-            React.createElement("table", null,
-                React.createElement("thead", null,
-                    React.createElement("tr", null,
-                        React.createElement("th", { className: "tDate" }, "Date"),
-                        React.createElement("th", { className: "tConcept" }, "Concept"),
-                        React.createElement("th", { className: "tAmount" }, "Amount"))),
-                React.createElement("tbody", null, transactions))));
-    }
-}
-const mapStateToProps = (state) => {
+
+    _createClass(History, [{
+        key: "getValue",
+        value: function getValue(ev) {
+            var value = ev.target.value,
+                changeCur = this.props.changeCur;
+            changeCur(value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            //////MAPPING CURRENCIES INTO <option> ELEMENTS
+            var _props = this.props,
+                curs = _props.curs,
+                hist = _props.hist,
+                histState = _props.histState;
+
+            var rateCodes = Object.getOwnPropertyNames(curs.currencyData.rates);
+            var currencies = rateCodes.map(function (code) {
+                return React.createElement("option", { key: code }, code);
+            });
+            var transactions = hist.map(function (transaction, ind) {
+                var currency = curs.currencyData.rates[histState.cur],
+                    displayValue = (transaction[2] * currency).toFixed(2);
+                return React.createElement("tr", { key: ind }, React.createElement("td", { className: "tDate" }, transaction[0]), React.createElement("td", { className: "tConcept" }, transaction[1]), React.createElement("td", { className: "tAmount" }, displayValue, " ", histState.cur));
+            });
+            return React.createElement("div", { id: "history" }, React.createElement("h3", null, "History"), React.createElement("div", null, React.createElement("p", null, "Display amounts in:"), React.createElement("select", { className: "currencies", value: histState.cur, onChange: this.getValue }, currencies)), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", { className: "tDate" }, "Date"), React.createElement("th", { className: "tConcept" }, "Concept"), React.createElement("th", { className: "tAmount" }, "Amount"))), React.createElement("tbody", null, transactions)));
+        }
+    }]);
+
+    return History;
+}(React.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
     return {
         curs: state.curs,
         hist: state.hist,
         histState: state.histState
     };
 };
-const mapDispatchToProps = (dispatch) => {
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
-        changeCur: (cur) => {
+        changeCur: function changeCur(cur) {
             dispatch(actions_1.default.histChange(cur));
         }
     };
 };
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(History);
-
 
 /***/ })
 /******/ ]);

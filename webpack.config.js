@@ -20,7 +20,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: 'sass-loader'
-            },            
+            },
             {
                 enforce: "pre",
                 test: /\.js$/,

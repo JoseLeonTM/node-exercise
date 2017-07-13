@@ -22,7 +22,7 @@ interface ConverterProps {
         date: Date
     };
 };
-class Converter extends React.Component<ConverterProps, any>{
+export class Converter extends React.Component<ConverterProps, any>{
     constructor() {
         super();
         this.handleConvert = this.handleConvert.bind(this);

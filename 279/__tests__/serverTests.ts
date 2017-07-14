@@ -1,7 +1,8 @@
 import * as request from 'request';
 
+
 function goFetch(){
-    return request(
+    return (request(
         'https://openexchangerates.org/api/latest.json?app_id=ae78aed5df4c4e3091aae93aa6b381a5',
         function(error,response,body){
             if(!error && response.statusCode == 200){
@@ -10,9 +11,11 @@ function goFetch(){
                 return res;
             }
         }
-    );
+    ));
 }
 
 test('Request the currencies',()=>{
-    expect(goFetch()).toBeDefined();
+    var data = goFetch();
+    // console.log(data);
+    expect(data).toBeDefined();
 });

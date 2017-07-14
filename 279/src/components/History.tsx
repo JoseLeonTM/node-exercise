@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Actions from '../actions';
 
 
-interface HistoryProps {
+export interface HistoryProps {
     curs: {
         currencyData: {
             rates: {
@@ -23,7 +23,7 @@ interface HistoryState {
     cur: string
 };
 
-class History extends React.Component<HistoryProps, HistoryState>{
+export class History extends React.Component<HistoryProps, HistoryState>{
     constructor(){
         super();
         this.getValue = this.getValue.bind(this);        

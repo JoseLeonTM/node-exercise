@@ -3,10 +3,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Actions from '../actions';
 
-interface ConverterProps {
+export interface ConverterProps {
     convert: Function;
     updateValues: Function;
-    clearValues: Function;
     convState: {
         from: string;
         amount: string;
@@ -94,10 +93,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateValues: (property: string, value) => {
             dispatch(Actions.changeConvValues(property, value));
-        },
-        clearValues: () => {
-            dispatch(Actions.clearConvValues());
         }
+        // clearValues: () => {
+        //     dispatch(Actions.clearConvValues());
+        // }
     }
 }
 export default connect(

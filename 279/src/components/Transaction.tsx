@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Actions from '../actions';
 import Reducers from '../reducers';
 
-interface TransactionProps {
+export interface TransactionProps {
     transaction: Function;
     updateValues: Function;
     clearValues: Function;
@@ -21,13 +21,9 @@ interface TransactionState {
     currency: string;
     amount: number;
     concept: string;
-    date: string;
-    conv: {
-        from: number;
-        usd: number;
-    }
+    date: string;    
 };
-class Transaction extends React.Component<TransactionProps, TransactionState>{
+export class Transaction extends React.Component<TransactionProps, TransactionState>{
     constructor() {
         super();
         this.handleTransaction = this.handleTransaction.bind(this);

@@ -1,49 +1,44 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import Container from '../src/components/Container';
-import {Converter} from '../src/components/Converter';
+import { Converter, ConverterProps } from '../src/components/Converter';
 
-////IMPORT DEPENDENCIES OF CONVERTER/////
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import Reducers from '../src/reducers';
-import Actions from '../src/actions';
+import 'isomorphic-fetch';
 
-let store = createStore(
-    Reducers,
-    applyMiddleware(
-        thunk        
-    )
-);
-store.dispatch(Actions.Update());
-interface ConverterProps {
-    convert: Function;
-    updateValues: Function;
-    clearValues: Function;
-    convState: {
-        from: string;
-        amount: string;
-        to: string;
-        result: number;
-    }
-    curs: {
-        currencyData: {
-            rates: {
-                [key: string]: number
-            }
+var props: ConverterProps,
+    component;
+
+beforeAll(() => {
+    props = {
+        convert: jest.fn(),
+        updateValues: jest.fn(),        
+        convState: {
+            from: "USD",
+            amount: "1",
+            to: "MXN",
+            result: 0
         },
-        date: Date
-    };
-};
-
-test('Add two numbers',()=>{
-    expect((1+3)).toBe(4);
-});
-test('Converter exist',()=>{
-    var component = renderer.create(
-        <Converter></Converter>
+        curs: {
+            currencyData: {
+                rates: {}
+            },
+            date: new Date()
+        }
+    }
+    var render = renderer.create(
+        <Converter {...props}></Converter>
     );
-    var tree = component.toJSON();
-    console.log(tree);
-    expect(tree).toMatchSnapshot();
-})
+    component = render.toJSON();
+});
+
+////////TESTS ON THE COMPONENT////////
+test('Converter exist', () => {
+    var { convert, updateValues } = props;
+    expect(component).toBeDefined();
+});
+test("Convert button", () => {
+    var { convert } = props;
+    var button = component.children[6];
+    var buttonClick = button.props.onClick;    
+    button.props.onClick();
+    expect(convert).toBeCalled();
+});

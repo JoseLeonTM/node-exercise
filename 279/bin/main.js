@@ -28148,13 +28148,14 @@ function requestUpdate() {
         type: 'requestUpdate'
     };
 }
+exports.requestUpdate = requestUpdate;
 function receiveUpdate(res) {
     return {
         type: 'receiveUpdate',
-        currencyData: res,
-        date: Date.now()
+        currencyData: res
     };
 }
+exports.receiveUpdate = receiveUpdate;
 function error(err) {
     console.log('Error', err);
     return {
@@ -28400,9 +28401,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         },
         updateValues: function updateValues(property, value) {
             dispatch(actions_1.default.changeConvValues(property, value));
-        },
-        clearValues: function clearValues() {
-            dispatch(actions_1.default.clearConvValues());
         }
     };
 };
@@ -28487,6 +28485,7 @@ var Transaction = function (_React$Component) {
     return Transaction;
 }(React.Component);
 
+exports.Transaction = Transaction;
 var mapStateToProps = function mapStateToProps(state) {
     return {
         curs: state.curs,
@@ -28576,6 +28575,7 @@ var History = function (_React$Component) {
     return History;
 }(React.Component);
 
+exports.History = History;
 var mapStateToProps = function mapStateToProps(state) {
     return {
         curs: state.curs,

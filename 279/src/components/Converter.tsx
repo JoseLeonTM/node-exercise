@@ -94,9 +94,6 @@ const mapDispatchToProps = (dispatch) => {
         updateValues: (property: string, value) => {
             dispatch(Actions.changeConvValues(property, value));
         }
-        // clearValues: () => {
-        //     dispatch(Actions.clearConvValues());
-        // }
     }
 }
 export default connect(

@@ -1,14 +1,13 @@
 
-function requestUpdate() {
+export function requestUpdate() {
     return {
         type: 'requestUpdate',
     }
 }
-function receiveUpdate(res) {
+export function receiveUpdate(res) {
     return {
         type: 'receiveUpdate',
-        currencyData: res,
-        date: Date.now()
+        currencyData: res
     }
 }
 function error(err) {
@@ -28,6 +27,6 @@ export default function update() {
             )
             .then(
             json => dispatch(receiveUpdate(json))
-            ) 
+            )
     }
 }

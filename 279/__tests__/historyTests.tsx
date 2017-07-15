@@ -37,13 +37,12 @@ beforeAll(() => {
 });
 
 ////////TESTS ON THE COMPONENT////////
-test('Converter exist', () => {    
+test('Converter exist', () => {
     expect(component).toBeDefined();
 });
-test("Save transaction and clear values", () => {
-    var { changeCur } = props;
-    var button = component.children[5];
-    var buttonClick = button.props.onClick;
-    button.props.onClick();
+test("Change the seleted currency", () => {
+    var { changeCur } = props,
+        select = component.children[1].children[1];
+    select.props.onChange({target:{value:"MXN"}});
     expect(changeCur).toBeCalled();
 });

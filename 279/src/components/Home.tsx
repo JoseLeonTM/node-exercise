@@ -1,12 +1,9 @@
 
 import * as React from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-interface HomeProps {
-    actions : any
-    value : any,
-    dispatch : any
+export interface HomeProps {
     curs: {
         currencyData: {
             rates: {
@@ -14,24 +11,33 @@ interface HomeProps {
             },
         }
         date: Date
-        isRequesting : boolean
+        isRequesting: boolean
     };
 };
 interface HomeState {};
 
-class HomeComponent extends React.Component<HomeProps,HomeState>{
-    render(){
-        var {isRequesting} =this.props.curs;
-        return(
+export class Home extends React.Component<HomeProps, HomeState>{
+    render() {
+        var { isRequesting } = this.props.curs;
+        return (
             <div id="home">
                 <nav>
                     <ul>
-                        <li><label hidden={!isRequesting}>Converter</label><Link hidden={isRequesting} to="./converter">Converter</Link></li>
-                        <li><label hidden={!isRequesting}>Transaction</label><Link hidden={isRequesting} to="./transaction">Transaction</Link></li>
-                        <li><label hidden={!isRequesting}>History</label><Link hidden={isRequesting} to="./history">History</Link></li>
+                        <li>
+                            <label hidden={!isRequesting}>Converter</label>
+                            <Link hidden={isRequesting} to="./converter">Converter</Link>
+                        </li>
+                        <li>
+                            <label hidden={!isRequesting}>Transaction</label>
+                            <Link hidden={isRequesting} to="./transaction">Transaction</Link>
+                        </li>
+                        <li>
+                            <label hidden={!isRequesting}>History</label>
+                            <Link hidden={isRequesting} to="./history">History</Link>
+                        </li>
                     </ul>
                 </nav>
-            </div>            
+            </div>
         )
     }
 }
@@ -40,7 +46,7 @@ const mapStateToProps = (state) => {
         curs: state.curs
     }
 }
-export default connect( 
+export default connect(
     mapStateToProps,
-    null  
-)(HomeComponent as any);
+    null
+)(Home as any);

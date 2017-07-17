@@ -25929,6 +25929,7 @@ var Container = function (_React$Component) {
     return Container;
 }(React.Component);
 
+exports.Container = Container;
 exports.default = react_redux_1.connect(null, function (dispatch) {
     return {
         init: function init(dispatch) {
@@ -28282,16 +28283,16 @@ var react_redux_1 = __webpack_require__(24);
 ;
 ;
 
-var HomeComponent = function (_React$Component) {
-    _inherits(HomeComponent, _React$Component);
+var Home = function (_React$Component) {
+    _inherits(Home, _React$Component);
 
-    function HomeComponent() {
-        _classCallCheck(this, HomeComponent);
+    function Home() {
+        _classCallCheck(this, Home);
 
-        return _possibleConstructorReturn(this, (HomeComponent.__proto__ || Object.getPrototypeOf(HomeComponent)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
     }
 
-    _createClass(HomeComponent, [{
+    _createClass(Home, [{
         key: "render",
         value: function render() {
             var isRequesting = this.props.curs.isRequesting;
@@ -28300,15 +28301,16 @@ var HomeComponent = function (_React$Component) {
         }
     }]);
 
-    return HomeComponent;
+    return Home;
 }(React.Component);
 
+exports.Home = Home;
 var mapStateToProps = function mapStateToProps(state) {
     return {
         curs: state.curs
     };
 };
-exports.default = react_redux_1.connect(mapStateToProps, null)(HomeComponent);
+exports.default = react_redux_1.connect(mapStateToProps, null)(Home);
 
 /***/ }),
 /* 276 */
